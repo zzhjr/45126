@@ -25,14 +25,14 @@ def callback():
 
     # 驗證訊息簽名
     try:
-        handler.handle(body, signature)
+        line_handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
 
     return "OK"
 
 # 處理來自用戶的訊息事件
-@handler.add(MessageEvent)
+@line_handler.add(MessageEvent)
 def handle_message(event):
     if isinstance(event.message, TextMessage):
         # 用戶發送的是文字訊息
